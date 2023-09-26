@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+body {
+  block-size: 100vh;
+  display: grid;
+  place-content: center;
+  background-color: #0e0e0e;
+  color: #e6e6e6;
+  font-family: sans-serif;
+}
+
+main {
+  --_card-size: 20rem;
+  --_spacer: 1rem;
+  --_img-size: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-inline-size: 48vw;
+  min-inline-size: 20vw;
+  gap: calc(var(--_spacer) * 1.5);
+  & > * {
+    flex: 1 1 var(--_card-size);
+  }
+}
+
+article.card {
+  display: grid;
+  background-color: #212121;
+  padding: var(--_spacer);
+  container-type: inline-size;
+  min-inline-size: var(--_card-size);
+
+  & header {
+    display: flex;
+    align-items: center;
+    gap: var(--_spacer);
+
+    & img {
+      inline-size: var(--_img-size);
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+
+    & .title {
+      display: grid;
+      grid-auto-rows: min-content;
+      gap: calc(var(--_spacer) / 4);
+    }
+
+    & .name {
+      font-weight: bolder;
+    }
+
+    & .role {
+      opacity: 50%;
+    }
+  }
+
+  & .content {
+    @container (inline-size > 20rem) {
+      display: grid;
+      grid-template-columns: calc(var(--_img-size) + var(--_spacer)) 1fr;
+      & h2,
+      & p {
+        grid-column: 2;
+      }
+    }
+    margin-block-start: var(--_spacer);
+
+    & h2 {
+      text-transform: uppercase;
+      padding-block-end: var(--_spacer);
+      line-height: 1.4;
+    }
+
+    & p {
+      opacity: 0.5;
+      line-height: 1.8;
+    }
+  }
+}
